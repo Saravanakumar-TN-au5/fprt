@@ -1,0 +1,91 @@
+What is Cryptography and what are the Encryption Methods?
+    Cryptography is a technique of securing information through certain algorithms based on mathematical
+    concepts so that only those for whom the information is intended can understand and process the
+    information.
+    Basically there are three types of Cryptography based on how the data or information is encrypted and
+    decrypted
+    1.Symmetric Key Cryptography:
+        It is an encryption system where the sender and receiver of message use a single common key 
+        to encrypt and decrypt messages. It is faster but key should be secured.
+    2.Hash Functions:
+        There is no usage of any key in this algorithm. A hash value with fixed length is calculated 
+        as per the plain text which makes it impossible for contents of plain text to be recovered. 
+        Many operating systems use hash functions to encrypt passwords.
+    3.Asymmetric Key Cryptography:
+        Under this system a pair of keys is used to encrypt and decrypt information. A public key is used 
+        for encryption and a private key is used for decryption. Public key and Private Key are different. 
+        Even if the public key is known by everyone the intended receiver can only decode it because 
+        he alone knows the private key.
+
+On entering a URL in a browser, explain the detailed procedure in which the request is handled by the browser 
+and the result is obtained for the given search query.
+    We enter a URL into a web browser
+    The browser looks up the IP address for the domain name via DNS
+    The browser sends a HTTP request to the server
+    The server sends back a HTTP response
+    The browser begins rendering the HTML
+    The browser sends requests for additional objects embedded in HTML (images, css, JavaScript) and 
+    repeats steps 3-5.
+    Once the page is loaded, the browser sends further async requests as needed.
+
+How will you create persistent connections between the server and the client?
+    Persistent connections provide a mechanism by which a client and a server can signal the close of a TCP connection. 
+    This signaling takes place using the Connection header field. 
+    Once a close has been signaled, the client MUST NOT send any more requests on that connection.
+
+What is Multithreading? What is the difference between a thread and a process?
+    In computer architecture, multithreading is the ability of a central processing unit to provide 
+    multiple threads of execution concurrently, supported by the operating system.
+    Process vs Thread:
+        A process is a program under execution i.e an active program.
+        A thread is a lightweight process that can be managed independently by a scheduler.
+
+        Processes don’t share memory.
+        A thread may share some memory with its peer threads.
+
+        If a process gets blocked, remaining processes can continue execution.
+        If a user level thread gets blocked, all of its peer threads also get blocked.
+
+        Processes require more resources whereas threads need less.
+
+        Processes are independent of each other.
+        THreads are part of a process and hence dependent
+
+Explain Indexing in DBMS.
+    Indexing is a datastructure technique with which we can efficiently retrieve records from database.
+    Usually those fields or attributes on which querying is frequently done, are indexed.
+    For example, In MongoDB whenever we query based on an attribute, the default scan will be COLLSCAN
+    which check each document in collection and retrieve the particular document. If frequent querying is 
+    done on certain attribute, then we can index them so that instead of doing whole COLLSCAN, it will
+    create a binary search tree and implement IXSCAN.
+    By default _id field is indexed so that qerying wil be faster.
+
+What is normalization and denormalization and why do we need it?
+    Normalization is the process of organizing the data in the database.
+    Normalization is used to minimize the redundancy from a relation or set of relations.
+    It is also used to eliminate the undesirable characteristics like Insertion, Update and Deletion Anomalies.
+    Normalization divides the larger table into the smaller table and links them using relationship.
+
+    MOst commonly used norma forms are 1NF,2NF,3NF and BCNF
+    1NF- An attribute of a table cannot hold multiple values. It should hold only atomic values.
+    2NF- Should be in 1NF and No non-prime attribute is dependent on the proper subset of any candidate key of table.
+    3NF- Should be in 2NF and Transitive functional dependency of non-prime attribute on any super key should be removed.
+
+Difference between INNER and OUTER JOIN.
+    Both inner join and outer join combine rows from teo tables based on join condition.
+    The join condition specifies how columns from each table are matched to one another.
+
+    Inner joins don’t include non-matching rows
+    Whereas outer joins include all the rows, even if there are no matching attributes.
+
+What is Cache? Where does cache lie in an Operating System? Difference between Cache and HashMap.
+    In computing, a cache is a hardware or software component that stores data so that future requests for that 
+    data can be served faster. The data stored in a cache might be the result of an earlier computation 
+
+How will you analyze 'process out of memory exception' in your node js application? 
+    This error occurs when the memory allocated for the execution of your application is less than the 
+    required memory by the application.
+    We can solve this by incresing the memory limit which 512mb by default.
+    we can set this using --max-old-space-size command in node.
+
+If RAM size is 4GB, if 4 processes of size 2GB are launched! What happens?
