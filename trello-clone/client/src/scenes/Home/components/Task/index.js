@@ -14,16 +14,20 @@ class Task extends Component {
     componentDidMount() {
         this.setState({updatedStatus: this.props.task.status})
     }
+    componentDidUpdate(prevsProps,prevsState) {
+        if (prevsProps !== this.props) {
+            this.setState({edit: false});
+        }
+    }
     onSave() {
         let {_id, name, status} = this.props.task;
         let listId = this.props.listId;
-        if (name !== this.state.updatedName) {
+        if (this.state.updatedName.length && name !== this.state.updatedName) {
             this.props.updateName(listId, _id, this.state.updatedName);
         }
-        if (status !== this.state.updatedStatus) {
+        if (this.state.updatedStatus && status !== this.state.updatedStatus) {
             this.props.updateStatus(listId, _id, this.state.updatedStatus);
         }
-        this.setState({edit: false});
     }
     render() {
         let {name, status} = this.props.task
@@ -41,10 +45,10 @@ class Task extends Component {
                     <section className={styles['statuses']}>
                         {this.state.status.map(stat => {
                             return stat === this.state.updatedStatus ?
-                            <div className={styles[stat]}
+                            <div className={styles[stat]} key={stat}
                             onClick={(e) => this.setState({updatedStatus: e.target.textContent})}
                             >{stat}<span className={styles['tick']}>✔</span></div>:
-                            <div className={styles[stat]}
+                            <div className={styles[stat]} key={stat}
                             onClick={(e) => this.setState({updatedStatus: e.target.textContent})}
                             >{stat}</div>
                         })}
@@ -54,12 +58,17 @@ class Task extends Component {
                 </div>
                 <div className={styles['head']}>
                     {this.state.edit ? 
-                    <textarea cols='30' onChange={(e)=>this.setState({updatedName: e.target.value})}>{name}</textarea>:
+                    <textarea cols='30' onChange={(e)=>this.setState({updatedName: e.target.value})}
+                    >{name}</textarea>:
                     <span>{name}</span>}
                 </div>
                 {this.state.edit ? 
+                <div>
                 <button type='button' className={styles['save-btn']}
-                onClick={() => this.onSave()}>Save</button>: ''}
+                onClick={() => this.onSave()}>Save</button>
+                <button type='button' className={styles['close-btn']}
+                onClick={() => this.setState({edit: false})}>✖</button>
+                </div>: ''}
             </div>
         )
     }

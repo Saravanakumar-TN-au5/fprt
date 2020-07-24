@@ -44,6 +44,14 @@ const reducer = (state = initialState, action) => {
             }
             stateCopy.lists = [...stateCopy.lists]
             return stateCopy;
+        case 'CREATE_TASK':
+            let i = stateCopy.lists.findIndex(list => list._id === action.payload.listId);
+            stateCopy.lists = [
+                ...stateCopy.lists.slice(0, i),
+                { ...stateCopy.lists[i], tasks: [...stateCopy.lists[i].tasks, action.payload.task] },
+                ...stateCopy.lists.slice(i + 1)
+            ]
+            return stateCopy;
         default:
             return stateCopy;
     }
