@@ -48,6 +48,16 @@ actions.createTask = (listId, name, cb) => {
     }
 }
 
+actions.createList = (name, cb) => {
+    return (dispatch) => {
+        axios.post(`${process.env.REACT_APP_API_URI}/createList`, {name})
+        .then(response => {
+            dispatch({type: 'CREATE_LIST', payload: response.data});
+            cb();
+        })
+    }
+}
+
 export const {
-    setLists, updateListHead, updateTaskName, updateTaskStatus, createTask
+    setLists, updateListHead, updateTaskName, updateTaskStatus, createTask, createList
 } = actions;

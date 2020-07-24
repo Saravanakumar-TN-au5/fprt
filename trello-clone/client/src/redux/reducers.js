@@ -52,6 +52,9 @@ const reducer = (state = initialState, action) => {
                 ...stateCopy.lists.slice(i + 1)
             ]
             return stateCopy;
+        case 'CREATE_LIST':
+            stateCopy.lists = [...stateCopy.lists, action.payload];
+            return stateCopy;
         default:
             return stateCopy;
     }
