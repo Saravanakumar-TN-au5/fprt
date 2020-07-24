@@ -32,7 +32,7 @@ class List extends Component {
                 </div>
                 <div>
                     {tasks ? tasks.map(task => {
-                        return <Task task={task} key={task._id}/>
+                        return <Task task={task} key={task._id} listId={_id}/>
                     }): ''}
                 </div>
                 <div className={styles['add-btn']}>+ Add task</div>

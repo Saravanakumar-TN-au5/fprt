@@ -20,4 +20,22 @@ actions.updateListHead = (id,updatedHead, cb) => {
     }
 }
 
-export const {setLists, updateListHead} = actions;
+actions.updateTaskName = (listid, id, updatedName) => {
+    return (dispatch) => {
+        axios.patch(`${process.env.REACT_APP_API_URI}/updateTaskName`, {id,name: updatedName})
+        .then(response => {
+            dispatch({type: 'UPDATE_TASK_NAME', payload: {listid, task: response.data}});
+        })
+    }
+}
+
+actions.updateTaskStatus = (listid, id, updatedStatus) => {
+    return (dispatch) => {
+        axios.patch(`${process.env.REACT_APP_API_URI}/updateTaskStatus`, {id,status: updatedStatus})
+        .then(response => {
+            dispatch({type: 'UPDATE_TASK_STATUS', payload: {listid, task: response.data}});
+        })
+    }
+}
+
+export const {setLists, updateListHead, updateTaskName, updateTaskStatus} = actions;
